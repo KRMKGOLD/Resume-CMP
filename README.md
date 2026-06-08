@@ -3,6 +3,7 @@ This is a Kotlin Multiplatform project targeting Web.
 * [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
     - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
+    - [wasmJsMain](./shared/src/wasmJsMain/kotlin) is for Kotlin/Wasm-specific code.
     - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
       For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
       the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
@@ -15,16 +16,14 @@ Use the run configurations provided by the run widget in your IDE's toolbar. You
 options:
 
 - Web app:
-    - Wasm target (faster, modern browsers): `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
-    - JS target (slower, supports older browsers): `./gradlew :webApp:jsBrowserDevelopmentRun`
+    - `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
 
 ### Running tests
 
 Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 
 - Web tests:
-    - Wasm target: `./gradlew :shared:wasmJsTest`
-    - JS target: `./gradlew :shared:jsTest`
+    - `./gradlew :shared:wasmJsTest`
 
 ---
 
