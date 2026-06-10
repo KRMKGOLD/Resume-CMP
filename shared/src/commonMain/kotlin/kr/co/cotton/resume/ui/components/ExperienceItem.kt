@@ -26,7 +26,9 @@ fun ExperienceItem(
         )
 
         if (experience.highlights.isNotEmpty()) {
-            BulletGroup(items = experience.highlights)
+            experience.highlights.forEach { highlight ->
+                BulletText(text = highlight)
+            }
         }
     }
 }

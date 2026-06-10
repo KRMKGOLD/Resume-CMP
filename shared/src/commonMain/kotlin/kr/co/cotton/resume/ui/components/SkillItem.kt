@@ -9,15 +9,17 @@ fun SkillItem(
     skill: Skill,
     modifier: Modifier = Modifier,
 ) {
+    if (skill.items.isEmpty()) {
+        BulletText(
+            title = skill.category,
+            modifier = modifier,
+        )
+        return
+    }
+
     BulletText(
-        text = if (skill.items.isEmpty()) {
-            ResumeBullet.emphasized(text = skill.category)
-        } else {
-            ResumeBullet.labeled(
-                label = skill.category,
-                value = skill.items.joinToString(separator = " · "),
-            )
-        },
+        title = skill.category,
+        description = skill.items.joinToString(separator = ", "),
         modifier = modifier,
     )
 }

@@ -1,6 +1,7 @@
 package kr.co.cotton.resume.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -18,28 +19,28 @@ fun ProjectItem(
         modifier = modifier,
     ) {
         BulletText(
-            text = ResumeBullet.labeled(
-                label = "프로젝트 설명",
-                value = project.description,
-            ),
+            title = "프로젝트 설명",
+            description = project.description,
         )
 
         BulletText(
-            text = ResumeBullet.labeled(
-                label = "기간",
-                value = project.period.toPeriodLabel(separator = "~"),
-            ),
+            title = "기간",
+            description = project.period.toPeriodLabel(separator = "~"),
         )
 
         if (project.responsibilities.isNotEmpty()) {
             BulletText(
-                text = ResumeBullet.label(label = "업무 내용"),
+                title = "업무 내용",
             )
 
-            BulletGroup(
-                items = project.responsibilities,
+            Column(
                 modifier = Modifier.padding(start = ResumeSpacing.depth),
-            )
+                verticalArrangement = Arrangement.spacedBy(ResumeSpacing.itemTitle),
+            ) {
+                project.responsibilities.forEach { responsibility ->
+                    BulletText(text = responsibility)
+                }
+            }
         }
 
         if (project.references.isNotEmpty()) {

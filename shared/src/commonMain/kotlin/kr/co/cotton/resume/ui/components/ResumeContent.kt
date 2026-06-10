@@ -22,7 +22,6 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isSpecified
 import kr.co.cotton.resume.model.resume.Link
@@ -36,49 +35,6 @@ internal object ResumeSpacing {
     val sectionTitle = 16.dp
     val itemTitle = 6.dp
     val content = 6.dp
-}
-
-internal object ResumeBullet {
-    fun regular(text: String): AnnotatedString = buildAnnotatedString {
-        withStyle(ResumeTypography.regular.toParagraphStyle()) {
-            withStyle(ResumeTypography.regular.toSpanStyle()) {
-                append(text)
-            }
-        }
-    }
-
-    fun labeled(
-        label: String,
-        value: String,
-    ): AnnotatedString = buildAnnotatedString {
-        withStyle(ResumeTypography.regular.toParagraphStyle()) {
-            withStyle(ResumeTypography.bold.toSpanStyle()) {
-                append(label)
-            }
-
-            withStyle(ResumeTypography.regular.toSpanStyle()) {
-                append(": ")
-                append(value)
-            }
-        }
-    }
-
-    fun label(label: String): AnnotatedString = buildAnnotatedString {
-        withStyle(ResumeTypography.regular.toParagraphStyle()) {
-            withStyle(ResumeTypography.bold.toSpanStyle()) {
-                append(label)
-                append(":")
-            }
-        }
-    }
-
-    fun emphasized(text: String): AnnotatedString = buildAnnotatedString {
-        withStyle(ResumeTypography.regular.toParagraphStyle()) {
-            withStyle(ResumeTypography.bold.toSpanStyle()) {
-                append(text)
-            }
-        }
-    }
 }
 
 @Composable
@@ -99,6 +55,32 @@ internal fun ResumeItem(
 
         content()
     }
+}
+
+@Composable
+internal fun BulletText(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    BulletText(
+        text = regularBulletText(text = text),
+        modifier = modifier,
+    )
+}
+
+@Composable
+internal fun BulletText(
+    title: String,
+    description: String? = null,
+    modifier: Modifier = Modifier,
+) {
+    BulletText(
+        text = titledBulletText(
+            title = title,
+            description = description,
+        ),
+        modifier = modifier,
+    )
 }
 
 @Composable
@@ -136,6 +118,34 @@ internal fun BulletText(
     }
 }
 
+private fun regularBulletText(text: String): AnnotatedString = buildAnnotatedString {
+    withStyle(ResumeTypography.regular.toParagraphStyle()) {
+        withStyle(ResumeTypography.regular.toSpanStyle()) {
+            append(text)
+        }
+    }
+}
+
+private fun titledBulletText(
+    title: String,
+    description: String?,
+): AnnotatedString = buildAnnotatedString {
+    withStyle(ResumeTypography.regular.toParagraphStyle()) {
+        withStyle(ResumeTypography.bold.toSpanStyle()) {
+            append(title)
+        }
+
+        withStyle(ResumeTypography.regular.toSpanStyle()) {
+            append(":")
+
+            description?.let {
+                append(" ")
+                append(it)
+            }
+        }
+    }
+}
+
 private fun AnnotatedString.firstParagraphLineHeight() =
     paragraphStyles
         .firstOrNull { range -> range.start <= 0 && range.end > 0 }
@@ -143,22 +153,6 @@ private fun AnnotatedString.firstParagraphLineHeight() =
         ?.lineHeight
         ?.takeIf { it.isSpecified }
         ?: ResumeTypography.regular.lineHeight
-
-@Composable
-internal fun BulletGroup(
-    items: List<String>,
-    modifier: Modifier = Modifier,
-    spacing: Dp = ResumeSpacing.itemTitle,
-) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(spacing),
-    ) {
-        items.forEach { item ->
-            BulletText(text = ResumeBullet.regular(item))
-        }
-    }
-}
 
 @Composable
 internal fun LinkText(

@@ -33,9 +33,12 @@ fun SummaryList(
     summary: List<String>,
     modifier: Modifier = Modifier,
 ) {
-    BulletGroup(
-        items = summary,
-        modifier = modifier,
-        spacing = ResumeSpacing.itemTitle,
-    )
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.itemTitle),
+    ) {
+        summary.forEach { text ->
+            BulletText(text = text)
+        }
+    }
 }
