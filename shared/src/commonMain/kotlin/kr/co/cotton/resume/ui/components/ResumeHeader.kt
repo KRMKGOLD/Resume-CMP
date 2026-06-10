@@ -24,7 +24,7 @@ fun ResumeHeader(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.depth),
     ) {
         Text(
             text = title,

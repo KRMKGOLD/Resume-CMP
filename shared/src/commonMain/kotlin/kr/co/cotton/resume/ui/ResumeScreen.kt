@@ -65,7 +65,7 @@ fun ResumeScreen(
 
             if (resume.experience.isNotEmpty()) {
                 ResumeSection(title = "Experience") {
-                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.depth)) {
                         resume.experience.forEach { experience ->
                             ExperienceItem(experience = experience)
                         }
@@ -75,7 +75,7 @@ fun ResumeScreen(
 
             if (resume.projects.isNotEmpty()) {
                 ResumeSection(title = "Projects") {
-                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.depth)) {
                         resume.projects.forEach { project ->
                             ProjectItem(project = project)
                         }

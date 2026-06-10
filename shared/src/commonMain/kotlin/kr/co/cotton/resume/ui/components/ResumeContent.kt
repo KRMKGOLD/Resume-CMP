@@ -29,11 +29,10 @@ import kr.co.cotton.resume.ui.theme.ResumeTypography
 
 internal object ResumeSpacing {
     val area = 32.dp
-    val profileTitle = 24.dp
+    val depth = 24.dp
     val sectionTitle = 16.dp
-    val itemTitle = 4.dp
-    val content = 4.dp
-    val depth = 20.dp
+    val itemTitle = 6.dp
+    val content = 6.dp
 }
 
 internal object ResumeBullet {
