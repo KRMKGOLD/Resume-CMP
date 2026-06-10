@@ -25,6 +25,26 @@ Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 - Web tests:
     - `./gradlew :shared:wasmJsTest`
 
+### Deploying to GitHub Pages
+
+This repository uses GitHub Actions to build and deploy the Web app to GitHub Pages on every push to `master`.
+
+1. On GitHub, open **Settings > Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Push to `master`, or run the **Deploy GitHub Pages** workflow manually from the **Actions** tab.
+
+The workflow builds the production Web distribution with:
+
+```sh
+./gradlew :webApp:wasmJsBrowserDistribution
+```
+
+and deploys:
+
+```text
+webApp/build/dist/wasmJs/productionExecutable
+```
+
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
