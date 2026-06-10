@@ -3,11 +3,12 @@ package kr.co.cotton.resume.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -16,12 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
 import kr.co.cotton.resume.model.resume.Link
 import kr.co.cotton.resume.model.resume.Period
 import kr.co.cotton.resume.ui.theme.ResumeColors
@@ -103,19 +106,27 @@ internal fun BulletText(
     text: AnnotatedString,
     modifier: Modifier = Modifier,
 ) {
+    val bulletLineHeight = with(LocalDensity.current) {
+        text.firstParagraphLineHeight().toDp()
+    }
+
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Top,
     ) {
-        Spacer(
+        Box(
             modifier = Modifier
-                .padding(top = 10.dp)
-                .size(4.dp)
-                .clip(CircleShape)
-                .background(ResumeColors.highlight),
-        )
-
-        Spacer(modifier = Modifier.width(10.dp))
+                .width(14.dp)
+                .height(bulletLineHeight),
+            contentAlignment = Alignment.CenterStart,
+        ) {
+            Spacer(
+                modifier = Modifier
+                    .size(4.dp)
+                    .clip(CircleShape)
+                    .background(ResumeColors.highlight),
+            )
+        }
 
         Text(
             text = text,
@@ -124,6 +135,14 @@ internal fun BulletText(
         )
     }
 }
+
+private fun AnnotatedString.firstParagraphLineHeight() =
+    paragraphStyles
+        .firstOrNull { range -> range.start <= 0 && range.end > 0 }
+        ?.item
+        ?.lineHeight
+        ?.takeIf { it.isSpecified }
+        ?: ResumeTypography.regular.lineHeight
 
 @Composable
 internal fun BulletGroup(
