@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import kr.co.cotton.resume.ui.theme.ResumeColors
 import kr.co.cotton.resume.ui.theme.ResumeTypography
 
@@ -17,7 +16,7 @@ fun ResumeSection(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
     ) {
         Text(
             text = title,
@@ -27,4 +26,16 @@ fun ResumeSection(
 
         content()
     }
+}
+
+@Composable
+fun SummaryList(
+    summary: List<String>,
+    modifier: Modifier = Modifier,
+) {
+    BulletGroup(
+        items = summary,
+        modifier = modifier,
+        spacing = ResumeSpacing.item,
+    )
 }

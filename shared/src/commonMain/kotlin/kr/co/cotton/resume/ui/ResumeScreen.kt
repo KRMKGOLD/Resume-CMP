@@ -18,6 +18,7 @@ import kr.co.cotton.resume.ui.components.ExperienceItem
 import kr.co.cotton.resume.ui.components.ProjectItem
 import kr.co.cotton.resume.ui.components.ResumeHeader
 import kr.co.cotton.resume.ui.components.ResumeSection
+import kr.co.cotton.resume.ui.components.ResumeSpacing
 import kr.co.cotton.resume.ui.components.SkillItem
 import kr.co.cotton.resume.ui.components.SummaryList
 import kr.co.cotton.resume.ui.theme.ResumeColors
@@ -39,7 +40,7 @@ fun ResumeScreen(
             modifier = Modifier
                 .widthIn(max = 920.dp)
                 .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(40.dp),
+            verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item),
         ) {
             ResumeHeader(
                 title = resume.title,
@@ -54,7 +55,7 @@ fun ResumeScreen(
 
             if (resume.skills.isNotEmpty()) {
                 ResumeSection(title = "Skills") {
-                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
                         resume.skills.forEach { skill ->
                             SkillItem(skill = skill)
                         }
@@ -64,7 +65,7 @@ fun ResumeScreen(
 
             if (resume.experience.isNotEmpty()) {
                 ResumeSection(title = "Experience") {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
                         resume.experience.forEach { experience ->
                             ExperienceItem(experience = experience)
                         }
@@ -74,7 +75,7 @@ fun ResumeScreen(
 
             if (resume.projects.isNotEmpty()) {
                 ResumeSection(title = "Projects") {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
                         resume.projects.forEach { project ->
                             ProjectItem(project = project)
                         }
