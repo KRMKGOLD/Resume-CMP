@@ -34,7 +34,6 @@ data class Skill(
 @Serializable
 data class Experience(
     val company: String,
-    val companyEn: String? = null,
     val role: String,
     val duration: String? = null,
     val period: Period,
