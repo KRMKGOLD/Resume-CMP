@@ -16,8 +16,6 @@ import kr.co.cotton.resume.model.resume.Link
 import kr.co.cotton.resume.ui.theme.ResumeColors
 import kr.co.cotton.resume.ui.theme.ResumeTypography
 
-private val ContactLabelWidth = 80.dp
-
 @Composable
 fun ResumeHeader(
     title: String,
@@ -26,7 +24,7 @@ fun ResumeHeader(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle),
     ) {
         Text(
             text = title,
@@ -35,7 +33,7 @@ fun ResumeHeader(
         )
 
         if (contacts.isNotEmpty()) {
-            Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
+            Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.content)) {
                 contacts.forEach { contact ->
                     ContactItem(contact = contact)
                 }
@@ -51,7 +49,7 @@ private fun ContactItem(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.content),
     ) {
         contact.value?.let { value ->
             ContactValueRow(
@@ -98,9 +96,7 @@ private fun ContactLinkRow(
 
         LinkText(
             link = link,
-            modifier = Modifier
-                .weight(1f)
-                .alignByBaseline(),
+            modifier = Modifier.alignByBaseline(),
         )
     }
 }
@@ -109,8 +105,10 @@ private fun ContactLinkRow(
 private fun RowScope.ContactLabel(
     label: String?,
 ) {
+    val contentLabelWidth = 80.dp
+
     if (label == null) {
-        Spacer(modifier = Modifier.width(ContactLabelWidth))
+        Spacer(modifier = Modifier.width(contentLabelWidth))
         return
     }
 
@@ -119,7 +117,7 @@ private fun RowScope.ContactLabel(
         style = ResumeTypography.bold,
         color = ResumeColors.gray800,
         modifier = Modifier
-            .width(ContactLabelWidth)
+            .width(contentLabelWidth)
             .alignByBaseline(),
     )
 }

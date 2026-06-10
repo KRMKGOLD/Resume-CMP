@@ -2,6 +2,7 @@ package kr.co.cotton.resume.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,12 +36,15 @@ fun ProjectItem(
                 text = ResumeBullet.label(label = "업무 내용"),
             )
 
-            BulletGroup(items = project.responsibilities)
+            BulletGroup(
+                items = project.responsibilities,
+                modifier = Modifier.padding(start = ResumeSpacing.depth),
+            )
         }
 
         if (project.references.isNotEmpty()) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
+                horizontalArrangement = Arrangement.spacedBy(ResumeSpacing.content),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 project.references.forEach { reference ->

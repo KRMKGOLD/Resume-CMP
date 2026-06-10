@@ -40,7 +40,7 @@ fun ResumeScreen(
             modifier = Modifier
                 .widthIn(max = 920.dp)
                 .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item),
+            verticalArrangement = Arrangement.spacedBy(ResumeSpacing.area),
         ) {
             ResumeHeader(
                 title = resume.title,
@@ -55,7 +55,7 @@ fun ResumeScreen(
 
             if (resume.skills.isNotEmpty()) {
                 ResumeSection(title = "Skills") {
-                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.itemTitle)) {
                         resume.skills.forEach { skill ->
                             SkillItem(skill = skill)
                         }
@@ -65,7 +65,7 @@ fun ResumeScreen(
 
             if (resume.experience.isNotEmpty()) {
                 ResumeSection(title = "Experience") {
-                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle)) {
                         resume.experience.forEach { experience ->
                             ExperienceItem(experience = experience)
                         }
@@ -75,7 +75,7 @@ fun ResumeScreen(
 
             if (resume.projects.isNotEmpty()) {
                 ResumeSection(title = "Projects") {
-                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.item)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(ResumeSpacing.profileTitle)) {
                         resume.projects.forEach { project ->
                             ProjectItem(project = project)
                         }

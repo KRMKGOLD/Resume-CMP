@@ -28,8 +28,12 @@ import kr.co.cotton.resume.ui.theme.ResumeColors
 import kr.co.cotton.resume.ui.theme.ResumeTypography
 
 internal object ResumeSpacing {
-    val text = 8.dp
-    val item = 16.dp
+    val area = 32.dp
+    val profileTitle = 24.dp
+    val sectionTitle = 16.dp
+    val itemTitle = 4.dp
+    val content = 4.dp
+    val depth = 20.dp
 }
 
 internal object ResumeBullet {
@@ -83,7 +87,7 @@ internal fun ResumeItem(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.itemTitle),
     ) {
         Text(
             text = title,
@@ -126,7 +130,7 @@ internal fun BulletText(
 internal fun BulletGroup(
     items: List<String>,
     modifier: Modifier = Modifier,
-    spacing: Dp = ResumeSpacing.text,
+    spacing: Dp = ResumeSpacing.itemTitle,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),

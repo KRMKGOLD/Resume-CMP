@@ -16,7 +16,7 @@ fun ResumeSection(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.text),
+        verticalArrangement = Arrangement.spacedBy(ResumeSpacing.sectionTitle),
     ) {
         Text(
             text = title,
@@ -36,6 +36,6 @@ fun SummaryList(
     BulletGroup(
         items = summary,
         modifier = modifier,
-        spacing = ResumeSpacing.item,
+        spacing = ResumeSpacing.itemTitle,
     )
 }
